@@ -108,14 +108,7 @@ module Nordea
           soap.body = req.to_hash
         end
         response_params = response.to_hash[:"#{action}out"]
-        if response_params[:response_header][:response_code] == "00"
-          Response.new(response_params)
-        else
-          raise Error.new(
-            response_params[:response_header][:response_code],
-            response_params[:response_header][:response_text]
-          )
-        end
+        Response.new(response_params)
       end
     end
   end
